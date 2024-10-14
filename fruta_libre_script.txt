@@ -1,0 +1,142 @@
+0. el _id es un identificador unico de 12 bytes -> 1 byte = 8 bits; 1HEX -> 4 bits; 12*2 = 24 caracteres HEXA
+
+1. Creación de la base de datos.
+use fruta_libre;
+
+2. Creación de las colecciones de la base de datos.
+db.createCollection('users');
+db.createCollection('offers');
+db.createCollection('products');
+db.createCollection('transactions');
+db.createCollection('passwords_recovery');
+
+3. Insercion de documentos en la coleccion "users"
+db.users.insertMany([
+  {
+    _id: ObjectId("670d706dc72664f40f816967"),
+    name: "Thomas Vanegas",
+    email: "thomas.vanegasa@upb.edu.co",
+    hash_password: "hashedpassword123",
+    role: "buyer",
+    verification_status: true,
+    registration_date: new Date(),
+    recovery_token: null,
+    transaction_history: []
+  },
+  {
+    _id: ObjectId("670d706dc72664f40f816968"),
+    name: "Mateo Monsalve",
+    email: "mateo.monsalve@upb.edu.co",
+    hash_password: "hashedpassword456",
+    role: "seller",
+    verification_status: true,
+    registration_date: new Date(),
+    recovery_token: null,
+    transaction_history: []
+  },
+  {
+    _id: ObjectId("670d706dc72664f40f816969"),
+    name: "Gina Orozco",
+    email: "gina.orozco@upb.edu.co",
+    hash_password: "hashedpassword789",
+    role: "admin",
+    verification_status: true,
+    registration_date: new Date(),
+    recovery_token: null,
+    transaction_history: []
+  }
+]);
+
+4. Insercion de documentos en la coleccion 'products' -> los unicos que venden son los "seller"
+   NOTA: Se asume que la cantidad de los productos está dada en kilogramos.
+   NOTA: Se debe estandirizar cuál será el estado de los productos. (disponible, fresco, vencido, etc).
+   NOTA: Se debe determinar qué tipos de métodos de entrega se quieren tener.
+
+db.products.insertMany([
+  {
+    _id: ObjectId("670d74b4c72664f40f81696a"),
+    seller_id: ObjectId("670d706dc72664f40f816968"),
+    name: "aguacate",
+    type: "fruta",
+    product_status: "disponible",
+    quantity: 50,
+    price: 100000,
+    delivery_method: "recoger en tienda",
+    publication_date: new Date()
+  },
+  {
+    _id: ObjectId("670d74b4c72664f40f81696b"),
+    seller_id: ObjectId("670d706dc72664f40f816968"),
+    name: "cebolla",
+    type: "hortaliza",
+    product_status: "vendido",
+    quantity: 20,
+    price: 30000,
+    delivery_method: "domicilio",
+    publication_date: new Date()
+  }
+]);
+
+5. Insercion de documentos en la coleccion 'offers'
+db.offers.insertMany([
+  {
+    _id: ObjectId("670d79b1c72664f40f81696c"),
+    product_id: ObjectId("670d74b4c72664f40f81696a"),  // Referencia a un producto en la coleccion 'products'
+    seller_id: ObjectId("670d706dc72664f40f816968"),  // Referencia a un seller en la coleccion 'users'
+    buyer_id: ObjectId("670d706dc72664f40f816967"),  // Referencia a un buyer en la coleccion 'users'
+    quantity_offered: 20,
+    price_offered: 35000,
+    payment_method: "credito",
+    status: "pendiente",
+    date: new Date()
+  },
+  {
+    _id: ObjectId("670d79b1c72664f40f81696d"),
+    product_id: ObjectId("670d74b4c72664f40f81696b"),
+    seller_id: ObjectId("670d706dc72664f40f816968"),
+    buyer_id: ObjectId("670d706dc72664f40f816967"),
+    quantity_offered: 20,
+    price_offered: 27000,
+    payment_method: "efectivo",
+    status: "aceptada",
+    date: new Date()
+  }
+]);
+
+6. Insercion de documentos en la coleccion 'transactions'
+   NOTA: Entiendiendo transacciones como ofertas aceptadas.
+
+db.transactions.insertMany([
+  {
+    _id: ObjectId("670d7a10c72664f40f81696e"),
+    offer_id: ObjectId("670d79b1c72664f40f81696d"),  // Referencia a una offer en la coleccion de 'offers'
+  }
+]);
+
+7. Insercion de documentos en la coleccion 'passwords_recovery'
+   NOTA: Se debe determinar cuál será el formato para el token de recuperación
+
+db.passwords_recovery.insertMany([
+  {
+    _id: ObjectId(),
+    user_id: ObjectId(),  // Reference to a user in 'users' collection
+    token: "recoveryToken123",
+    request_date: new Date(),
+    expiration_date: new Date()
+  },
+  {
+    _id: ObjectId(),
+    user_id: ObjectId(),
+    token: "recoveryToken456",
+    request_date: new Date(),
+    expiration_date: new Date()
+  }
+]);
+
+8. Consulta general a las colecciones
+show collections;
+db.users.find().pretty();
+db.products.find().pretty();
+db.offers.find().pretty();
+db.transactions.find().pretty();
+db.passwords_recovery.find().pretty();
