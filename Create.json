@@ -1,0 +1,16 @@
+[
+    {
+        "_create_db": "Para crear una nueva base de datos en mongo, se usa el comando 'use nombre_bd' -> use administracion_buses_cargadores"
+    },
+
+    {
+        "_create_collection_vacia": "Para crear una nueva coleccion vacia usar -> db.createCollection('nombre_coleccion')"
+    },
+
+    {
+        "_create_collections": "Para crear una coleccion con documentos dentro de una BD usar -> db.nombre_coleccion.insert",
+        "_descripcion": "db.nombre_coleccion.insertOne({'clave': 'valor'})",
+        "__descripcion": "db.nombre_coleccion.insertMany([{}, {}, {}])",
+        "_nota": "La palabra db es obligatoria y es reservada de MongoDB"
+    }
+]

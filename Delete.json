@@ -1,0 +1,19 @@
+[
+
+    {
+        "_delete_db": "Para eliminar una BD usar -> db.dropDatabase()"
+    },
+
+    {
+        "_delete_coleccion": "Para eliminar una coleccion (Tabla en MR) usar -> db.nombre_coleccion.drop()"
+    },
+
+    {
+        "_delete_documento": "Para eliminar un documento o conjunto de documentos usar -> db.nombre_coleccion.deleteMany()/deleteOne()"
+    },
+
+    {
+        "_contar_documentos": "Para contar cuantos documentos cumplen X condición usar -> db.nombre_coleccion.countDocuments({filtro})"
+    }
+
+]

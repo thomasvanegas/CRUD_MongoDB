@@ -1,0 +1,10 @@
+[
+    {
+        "_update_single_doc": "Para actualizar un unico documento usar -> db.nombre_coleccion.updateOne({filtro}, {$set: {key: valor}})",
+        "_comment": "Un método similar e interesante es db.nombre_coleccion.findOneAndUpdate()"
+    },
+
+    {
+        "_update_nombre_collection": "Para actualizar el nombre de una coleccion usa -> db.nombre_coleccion.renameCollection('nuevo_nombre')"
+    }
+]

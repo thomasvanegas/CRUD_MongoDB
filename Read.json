@@ -1,0 +1,25 @@
+[
+    {
+        "_read_db": "Para visualizar las bases de datos usar -> 'show dbs or show databases'",
+        "_descripcion": "Las BD deben tener colecciones dentro y a su vez documentos dentro de dichas colecciones para visualizarse"
+    },
+
+    {
+        "_read_coleccion": "Para visualizar las colecciones usar -> show collections",
+        "_descripcion": "Con este comando solo se visualiza el nombre de las colecciones presente en una BD"
+    },
+
+    {
+        "_read_coleccion": "Para leer los documentos presentes en una coleccion usar -> db.nombre_coleccion.find()",
+        "_sql": "El anterior comando tiene un símil con un SELECT * FROM Coleccion, siempre y cuando se encuentre dentro del schema de la BD"
+    },
+
+    {
+        "_read_coleccion": "Para realizar una query con filtro usar -> db.nombre_coleccion.find({'clave': 'valor_filtro'})",
+        "_descripcion": "Retornará TODOS los valores que cumplan con dicha condición",
+        "_anotacion": "Para retornar UN SOLO documento que cumpla dicha condición usar -> db.nombre_coleccion.findOne(filtro)",
+        "_filtro": "El filtro debe ser un objeto tipo JSON que contenga la clave y valor deseado de la consulta",
+        "_limit": "Si se desea hacer una consulta con límite de retornos usar -> db.nombre_coleccion.find(filtro).limit(int)",
+        "_ordenamiento": "Para que la query salga ordenada usar -> db.nombre_coleccion.find().sort({'atributo': 1 o -1}) -> 1:ASC"
+    }
+]
